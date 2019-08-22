@@ -1,9 +1,9 @@
 package com.ilifesmart.weatherdemoapi
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.ilifesmart.weatherdemoapi.net.BaseRepository
 import com.ilifesmart.weatherdemoapi.net.RemoteRepository
 import kotlinx.coroutines.TimeoutCancellationException
 import java.lang.Exception
@@ -20,9 +20,8 @@ abstract class BaseViewModelActivity<VM: BaseViewModel>: BaseActivity() {
     protected abstract fun providerVMClass():Class<VM>
 
     private fun initVM() {
-        println("initVM")
-        providerVMClass()?.let {
-            viewModel = ViewModelProvider.NewInstanceFactory().create(it)
+        providerVMClass().run {
+            viewModel = ViewModelProvider.NewInstanceFactory().create(this)
             lifecycle.addObserver(viewModel) // lifecycle是创建类时创建. 也就是其初始生命周期极早.
         }
     }
@@ -33,14 +32,14 @@ abstract class BaseViewModelActivity<VM: BaseViewModel>: BaseActivity() {
                 requestError(it)
             })
 
-            getFinally().observe(this@BaseViewModelActivity, Observer {
-                requestFinally(it)
+            loading().observe(this@BaseViewModelActivity, Observer {
+                showLoading(it)
             })
         }
     }
 
-    open fun requestFinally(it:Int?) {
-        // ...
+    open fun showLoading(it:Boolean) {
+        println("LoadingShow:$it")
     }
 
     private fun requestError(it:Exception?) {
@@ -49,7 +48,7 @@ abstract class BaseViewModelActivity<VM: BaseViewModel>: BaseActivity() {
                 is TimeoutCancellationException -> {
                     toast("请求超时")
                 }
-                is RemoteRepository.TokenInvalidException -> {
+                is BaseRepository.TokenInvalidException -> {
                     it.message?.let {
                         toast(it)
                     }

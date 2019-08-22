@@ -2,14 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
-        <variable
-                name="data"
-                type="com.ilifesmart.weatherdemoapi.beans.Data" />
-        <variable
-                name="bean"
-                type="com.ilifesmart.weatherdemoapi.beans.Data" />
-
+        <import type="com.ilifesmart.weatherdemoapi.beans.Data" />
+        <variable name="bean" type="Data" />
     </data>
     
     <LinearLayout

@@ -10,7 +10,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class RemoteRepository private constructor() {
+class RemoteRepository private constructor():BaseRepository() {
     private val retrofit:Retrofit
     private val service: ApiService
 
@@ -23,7 +23,6 @@ class RemoteRepository private constructor() {
                 println("OkHttpClient intercept: content $request")
                 it.proceed(request)
             }.build()
-
 
         retrofit = Retrofit.Builder()
             .baseUrl("https://wanandroid.com/")
@@ -46,16 +45,4 @@ class RemoteRepository private constructor() {
     suspend fun getDatas(): ResponseData<List<Data>> = request {
         service.getDatas()
     }
-
-    private suspend fun <T:Any> request(call: suspend () -> ResponseData<T>): ResponseData<T> {
-        return withContext(Dispatchers.Default) {
-            call.invoke()
-        }.apply {
-            when (errorCode) {
-                100 -> throw TokenInvalidException()
-            }
-        }
-    }
-
-    class TokenInvalidException(msg: String="token invalid"):java.lang.Exception(msg)
 }

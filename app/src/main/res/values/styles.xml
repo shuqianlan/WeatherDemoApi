@@ -6,6 +6,26 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsTranslucent">true</item>
+<!--        <item name="android:windowBackground">@mipmap/ic_launcher_round</item>-->
+
+        <!-- Default Animation invalid. -->
+<!--        <item name="android:windowIsTranslucent">false</item>-->
+<!--        <item name="android:windowAnimationStyle">@style/FadeAnimationStyle</item>-->
+    </style>
+
+    <style name="FadeAnimationStyle" parent="android:Animation.Activity">
+        <item name="android:activityCloseExitAnimation">@anim/fragment_fade_exit</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+    </style>
 </resources>

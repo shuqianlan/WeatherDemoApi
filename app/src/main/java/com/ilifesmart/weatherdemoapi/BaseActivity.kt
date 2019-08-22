@@ -6,8 +6,12 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 
-open abstract class BaseActivity : AppCompatActivity() {
+@UseExperimental(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,10 +25,17 @@ open abstract class BaseActivity : AppCompatActivity() {
     }
 
     inline fun Activity.toast(msg:String, duration:Int=Toast.LENGTH_SHORT) {
-        Toast.makeText(this, msg, duration).show()
+        if (msg.isNotEmpty()) {
+            Toast.makeText(this, msg, duration).show()
+        }
     }
 
-    abstract fun initView()
+    override fun onDestroy() {
+        super.onDestroy()
+        cancel()
+    }
+
+    open fun initView() {}
     abstract fun initData()
     abstract fun getLayoutResId():Int
 }

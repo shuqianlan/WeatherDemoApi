@@ -9,17 +9,18 @@ import java.lang.Exception
 open class BaseViewModel : ViewModel(), LifecycleObserver {
 
     private val error by lazy { MutableLiveData<Exception>() }
-    private val finally by lazy { MutableLiveData<Int>() }
+    private val loading by lazy { MutableLiveData<Boolean>() }
 
     fun launchUI(block: suspend CoroutineScope.()->Unit) = viewModelScope.launch {
+        loading.value = true
         try {
-            withTimeout(5000) {
+            withTimeout(5000) { // 超时则抛出异常TimeoutCancellationException
                 block() // 此处切换到线程池的上下文.
             }
         } catch (e: Exception) {
             error.value = e
         } finally {
-            finally.value = 200
+            loading.value = false
         }
     }
 
@@ -27,7 +28,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
         return error
     }
 
-    fun getFinally(): LiveData<Int> {
-        return finally
+    fun loading(): LiveData<Boolean> {
+        return loading
     }
 }

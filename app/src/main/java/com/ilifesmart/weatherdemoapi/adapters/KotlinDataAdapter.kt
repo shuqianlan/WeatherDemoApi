@@ -7,6 +7,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
+/*
+* 若itemHolder的xml中，只有一个variable，则无需调用bindWithData
+*
+* */
 class KotlinDataAdapter<T,R:ViewDataBinding> private constructor(): RecyclerView.Adapter<DataHolder>() {
     private var layoutId:Int?=null
     private var datas:List<T>?=null
@@ -42,7 +46,7 @@ class KotlinDataAdapter<T,R:ViewDataBinding> private constructor(): RecyclerView
             return this
         }
 
-        fun addBindView(itemBind:((holder:DataHolder, itemData:B) -> Unit)): Builder<B,S> {
+        fun bindWithData(itemBind:((holder:DataHolder, itemData:B) -> Unit)): Builder<B,S> {
             adapter.addBindView = itemBind
             return this
         }

@@ -10,12 +10,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainDemoViewModel:BaseViewModel() {
+    val repository = RemoteRepository.getInstance()
     private val datas:MutableLiveData<List<Data>> by lazy {MutableLiveData<List<Data>>().also {
         loadDatas()
     }}
 
     private fun loadDatas() = launchUI {
-        val result = RemoteRepository.getInstance().getDatas()
+        val result = repository.getDatas()
         datas.value = result.data
     }
 
@@ -23,4 +24,8 @@ class MainDemoViewModel:BaseViewModel() {
         return datas
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        println("end_of_view_models")
+    }
 }

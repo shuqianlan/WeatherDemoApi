@@ -26,17 +26,16 @@ class MainActivity : BaseViewModelActivity<MainDemoViewModel>() {
         })
     }
 
-    private fun creatAdapter():KotlinDataAdapter<Data,ArticleItemBinding> = KotlinDataAdapter.Builder<Data,ArticleItemBinding>()
-            .setLayoutId(R.layout.article_item)
-            .setData(datas)
-            .addBindView {holder, itemData ->
-                (holder.binder as? ArticleItemBinding)?.let {
-                    it.bean = itemData
-                }
+    private fun creatAdapter() = with(KotlinDataAdapter.Builder<Data, ArticleItemBinding>()) {
+        setLayoutId(R.layout.article_item)
+        .setData(datas)
+        .bindWithData { holder, itemData ->
+            (holder.binder as? ArticleItemBinding)?.let {
+                it.bean = itemData
             }
-            .onItemClick {
-                    _, itemData ->
-                toast(itemData.name)
-            }
-            .build()
+        }.onItemClick { _, itemData ->
+            toast(itemData.name)
+        }.build()
+    }
 }
+
