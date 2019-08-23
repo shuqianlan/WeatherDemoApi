@@ -9,6 +9,7 @@ import com.ilifesmart.weatherdemoapi.databeans.HomeChapters
 import com.ilifesmart.weatherdemoapi.databinding.HomeChaptersLayoutBinding
 import com.ilifesmart.weatherdemoapi.viewmodels.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.content_home.*
 
 class HomeActivity : BaseViewModelActivity<HomeViewModel>() {
 
@@ -24,13 +25,12 @@ class HomeActivity : BaseViewModelActivity<HomeViewModel>() {
         home_articles.adapter = KotlinDataAdapter.Builder<HomeChapters.Data, HomeChaptersLayoutBinding>().apply {
             setLayoutId(R.layout.home_chapters_layout)
             setData(datas)
-/*            bindWithData{
-//                holder, itemData ->
-//                (holder.binder as? HomeChaptersLayoutBinding)?.let {
-//                    holder.binder.bean = itemData
-//                }
-//            }
-*/
+            bindWithData{
+                holder, itemData ->
+                (holder.binder as? HomeChaptersLayoutBinding)?.let {
+                    holder.binder.bean = itemData
+                }
+            }
             isSupportRefreshStatus(true)
         }.build()
 
@@ -41,6 +41,7 @@ class HomeActivity : BaseViewModelActivity<HomeViewModel>() {
                     var lastItem = it.findLastCompletelyVisibleItemPosition()
                     var itemCount = it.itemCount
 
+                    println("lastItem: $lastItem itemCount:$itemCount")
                     if (itemCount-1 == lastItem) {
                         loadDatas()
                     }
