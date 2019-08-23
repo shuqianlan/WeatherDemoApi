@@ -26,7 +26,7 @@ abstract class BaseViewModelActivity<VM: BaseViewModel>: BaseActivity() {
 
     private fun startObserver() {
         viewModel.run {
-            getErro().observe(this@BaseViewModelActivity, Observer {
+            getError().observe(this@BaseViewModelActivity, Observer {
                 requestError(it)
             })
 

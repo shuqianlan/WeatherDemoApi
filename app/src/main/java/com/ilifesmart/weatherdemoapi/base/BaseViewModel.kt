@@ -18,17 +18,20 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
                 block() // 此处切换到线程池的上下文.
             }
         } catch (e: Exception) {
+            onError()
             error.value = e
         } finally {
             loading.value = false
         }
     }
 
-    fun getErro(): LiveData<Exception> {
+    fun getError(): LiveData<Exception> {
         return error
     }
 
     fun loading(): LiveData<Boolean> {
         return loading
     }
+
+    open fun onError() {}
 }

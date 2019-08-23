@@ -1,4 +1,4 @@
-package com.ilifesmart.weatherdemoapi
+package com.ilifesmart.weatherdemoapi.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

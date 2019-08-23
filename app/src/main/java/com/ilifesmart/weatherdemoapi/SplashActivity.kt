@@ -11,7 +11,7 @@ class SplashActivity : BaseActivity() {
     override fun initData() {
         launch {
             delay(1000L)
-            val i = Intent(this@SplashActivity, MainActivity::class.java).apply {
+            val i = Intent(this@SplashActivity, HomeActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             }
 

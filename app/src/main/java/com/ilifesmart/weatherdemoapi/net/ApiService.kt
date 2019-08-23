@@ -2,6 +2,7 @@ package com.ilifesmart.weatherdemoapi.net
 
 import com.ilifesmart.weatherdemoapi.databeans.WXAOfficialAccounts
 import com.ilifesmart.weatherdemoapi.base.ResponseData
+import com.ilifesmart.weatherdemoapi.databeans.HomeChapters
 import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -22,7 +23,7 @@ interface ApiService {
 
     // 首页文章列表
     @GET("article/list/{index}/json")
-    suspend fun homePageDatas(@Path("index") index:String): ResponseData<Any>
+    suspend fun homePageDatas(@Path("index") index:String): ResponseData<HomeChapters>
 
     // 首页Banner
     @GET("banner/json")

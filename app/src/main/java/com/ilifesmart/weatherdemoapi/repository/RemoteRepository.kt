@@ -3,6 +3,7 @@ package com.ilifesmart.weatherdemoapi.repository
 import com.ilifesmart.weatherdemoapi.base.BaseRepository
 import com.ilifesmart.weatherdemoapi.databeans.WXAOfficialAccounts
 import com.ilifesmart.weatherdemoapi.base.ResponseData
+import com.ilifesmart.weatherdemoapi.databeans.HomeChapters
 import com.ilifesmart.weatherdemoapi.net.ApiService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -46,5 +47,10 @@ class RemoteRepository private constructor(): BaseRepository() {
 
     suspend fun getDatas(): ResponseData<List<WXAOfficialAccounts>> = request {
         service.getDatas()
+    }
+
+    suspend fun homeChapters(index:String):ResponseData<HomeChapters> = request {
+        println("index: $index")
+        service.homePageDatas(index)
     }
 }

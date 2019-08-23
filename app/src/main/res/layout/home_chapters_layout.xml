@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.ilifesmart.weatherdemoapi.databeans.HomeChapters.Data" />
+        <variable
+                name="bean"
+                type="Data" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:background="@android:color/white"
+            android:layout_height="120dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/chapter_title"
+                app:layout_constraintStart_toStartOf="@id/chapter_title"
+                android:layout_marginLeft="20dp"
+                android:text="@{bean.author}"
+                />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@android:style/Widget.Material.Light.TextView"
+                android:text="@{bean.title}"
+                android:id="@+id/chapter_title"
+                android:layout_marginLeft="20dp"
+                android:textColor="@android:color/darker_gray"
+                tools:text="Android 网络编程"
+                />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/chapter_title"
+                app:layout_constraintTop_toBottomOf="@id/chapter_title"
+                android:layout_marginTop="20dp"
+                android:text="@{bean.chapterName}"
+                tools:text="Https"
+                android:id="@+id/chapter_category"
+                android:textSize="12sp"
+                android:textColor="@color/colorPrimary"
+                />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{bean.niceDate}"
+                tools:text="12小时前"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/chapter_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="20dp"
+                android:textSize="12sp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

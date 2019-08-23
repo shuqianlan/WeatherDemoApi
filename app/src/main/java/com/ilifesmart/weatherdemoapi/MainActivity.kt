@@ -5,6 +5,7 @@ import com.ilifesmart.weatherdemoapi.adapters.KotlinDataAdapter
 import com.ilifesmart.weatherdemoapi.base.BaseViewModelActivity
 import com.ilifesmart.weatherdemoapi.databeans.WXAOfficialAccounts
 import com.ilifesmart.weatherdemoapi.databinding.ArticleItemBinding
+import com.ilifesmart.weatherdemoapi.viewmodels.MainDemoViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseViewModelActivity<MainDemoViewModel>() {
