@@ -1,6 +1,6 @@
-package com.ilifesmart.weatherdemoapi.beans
+package com.ilifesmart.weatherdemoapi.databeans
 
-data class Data(
+data class WXAOfficialAccounts(
     val children: List<Any>,
     val courseId: Int,
     val id: Int,

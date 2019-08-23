@@ -1,4 +1,4 @@
-package com.ilifesmart.weatherdemoapi
+package com.ilifesmart.weatherdemoapi.base
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.CoroutineScope

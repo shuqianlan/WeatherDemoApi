@@ -1,9 +1,8 @@
-package com.ilifesmart.weatherdemoapi
+package com.ilifesmart.weatherdemoapi.base
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope

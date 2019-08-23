@@ -1,6 +1,5 @@
-package com.ilifesmart.weatherdemoapi.net
+package com.ilifesmart.weatherdemoapi.base
 
-import com.ilifesmart.weatherdemoapi.beans.ResponseData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

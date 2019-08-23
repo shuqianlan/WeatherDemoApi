@@ -1,16 +1,16 @@
-package com.ilifesmart.weatherdemoapi.net
+package com.ilifesmart.weatherdemoapi.repository
 
-import com.ilifesmart.weatherdemoapi.beans.Data
-import com.ilifesmart.weatherdemoapi.beans.ResponseData
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.ilifesmart.weatherdemoapi.base.BaseRepository
+import com.ilifesmart.weatherdemoapi.databeans.WXAOfficialAccounts
+import com.ilifesmart.weatherdemoapi.base.ResponseData
+import com.ilifesmart.weatherdemoapi.net.ApiService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class RemoteRepository private constructor():BaseRepository() {
+class RemoteRepository private constructor(): BaseRepository() {
     private val retrofit:Retrofit
     private val service: ApiService
 
@@ -36,13 +36,15 @@ class RemoteRepository private constructor():BaseRepository() {
 
     companion object {
         @Volatile
-        private var instance:RemoteRepository? = null
-        fun getInstance() = instance ?: synchronized(this) {
-            instance ?: RemoteRepository().also { instance = it }
+        private var instance: RemoteRepository? = null
+        fun getInstance() = instance
+            ?: synchronized(this) {
+            instance
+                ?: RemoteRepository().also { instance = it }
         }
     }
 
-    suspend fun getDatas(): ResponseData<List<Data>> = request {
+    suspend fun getDatas(): ResponseData<List<WXAOfficialAccounts>> = request {
         service.getDatas()
     }
 }

@@ -1,10 +1,8 @@
-package com.ilifesmart.weatherdemoapi
+package com.ilifesmart.weatherdemoapi.base
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.ilifesmart.weatherdemoapi.net.BaseRepository
-import com.ilifesmart.weatherdemoapi.net.RemoteRepository
 import kotlinx.coroutines.TimeoutCancellationException
 import java.lang.Exception
 

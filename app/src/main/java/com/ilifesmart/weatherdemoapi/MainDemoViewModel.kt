@@ -2,16 +2,13 @@ package com.ilifesmart.weatherdemoapi
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.ilifesmart.weatherdemoapi.beans.Data
-import com.ilifesmart.weatherdemoapi.net.RemoteRepository
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.ilifesmart.weatherdemoapi.base.BaseViewModel
+import com.ilifesmart.weatherdemoapi.databeans.WXAOfficialAccounts
+import com.ilifesmart.weatherdemoapi.repository.RemoteRepository
 
-class MainDemoViewModel:BaseViewModel() {
+class MainDemoViewModel: BaseViewModel() {
     val repository = RemoteRepository.getInstance()
-    private val datas:MutableLiveData<List<Data>> by lazy {MutableLiveData<List<Data>>().also {
+    private val datas:MutableLiveData<List<WXAOfficialAccounts>> by lazy {MutableLiveData<List<WXAOfficialAccounts>>().also {
         loadDatas()
     }}
 
@@ -20,7 +17,7 @@ class MainDemoViewModel:BaseViewModel() {
         datas.value = result.data
     }
 
-    fun getArticls(): LiveData<List<Data>> {
+    fun getArticls(): LiveData<List<WXAOfficialAccounts>> {
         return datas
     }
 

@@ -2,12 +2,13 @@ package com.ilifesmart.weatherdemoapi
 
 import androidx.lifecycle.Observer
 import com.ilifesmart.weatherdemoapi.adapters.KotlinDataAdapter
-import com.ilifesmart.weatherdemoapi.beans.Data
+import com.ilifesmart.weatherdemoapi.base.BaseViewModelActivity
+import com.ilifesmart.weatherdemoapi.databeans.WXAOfficialAccounts
 import com.ilifesmart.weatherdemoapi.databinding.ArticleItemBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseViewModelActivity<MainDemoViewModel>() {
-    private var datas = mutableListOf<Data>()
+    private var datas = mutableListOf<WXAOfficialAccounts>()
 
     override fun providerVMClass(): Class<MainDemoViewModel> {
         return MainDemoViewModel::class.java
@@ -26,7 +27,7 @@ class MainActivity : BaseViewModelActivity<MainDemoViewModel>() {
         })
     }
 
-    private fun creatAdapter() = with(KotlinDataAdapter.Builder<Data, ArticleItemBinding>()) {
+    private fun creatAdapter() = with(KotlinDataAdapter.Builder<WXAOfficialAccounts, ArticleItemBinding>()) {
         setLayoutId(R.layout.article_item)
         .setData(datas)
         .bindWithData { holder, itemData ->

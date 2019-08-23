@@ -2,8 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <import type="com.ilifesmart.weatherdemoapi.beans.Data" />
-        <variable name="bean" type="Data" />
+        <import type="com.ilifesmart.weatherdemoapi.databeans.WXAOfficialAccounts" />
+        <variable name="bean" type="WXAOfficialAccounts" />
     </data>
     
     <LinearLayout
