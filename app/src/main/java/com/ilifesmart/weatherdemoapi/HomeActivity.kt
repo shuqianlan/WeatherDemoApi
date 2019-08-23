@@ -35,17 +35,23 @@ class HomeActivity : BaseViewModelActivity<HomeViewModel>() {
         }.build()
 
         home_articles.addOnScrollListener(object :RecyclerView.OnScrollListener() {
+            private var isScrolled = false // 限制滑动时加载.
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (isScrolled) {
+                    (recyclerView.layoutManager as? LinearLayoutManager) ?.let {
+                        var lastItem = it.findLastCompletelyVisibleItemPosition()
+                        var itemCount = it.itemCount
 
-                (recyclerView.layoutManager as? LinearLayoutManager) ?.let {
-                    var lastItem = it.findLastCompletelyVisibleItemPosition()
-                    var itemCount = it.itemCount
-
-                    println("lastItem: $lastItem itemCount:$itemCount")
-                    if (itemCount-1 == lastItem) {
-                        loadDatas()
+                        println("lastItem: $lastItem itemCount:$itemCount")
+                        if (itemCount-1 == lastItem) {
+                            loadDatas()
+                        }
                     }
                 }
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                isScrolled = (newState in listOf<Int>(RecyclerView.SCROLL_STATE_DRAGGING, RecyclerView.SCROLL_STATE_SETTLING))
             }
         })
 
