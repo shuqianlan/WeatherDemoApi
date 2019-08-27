@@ -8,7 +8,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingVertical="20dp"
+            >
 
         <ProgressBar
                 style="@android:style/Widget.DeviceDefault.ProgressBar.Small"
@@ -16,9 +18,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@+id/loading_text"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-
-                />
+                app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
                 android:layout_width="wrap_content"

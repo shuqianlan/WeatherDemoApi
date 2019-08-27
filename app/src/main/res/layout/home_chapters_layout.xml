@@ -14,7 +14,9 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:background="@android:color/white"
-            android:layout_height="120dp">
+            android:layout_height="120dp"
+            android:layout_marginBottom="10dp"
+            >
 
         <TextView
                 android:layout_width="wrap_content"
@@ -22,23 +24,25 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/chapter_title"
                 app:layout_constraintStart_toStartOf="@id/chapter_title"
-                android:layout_marginLeft="20dp"
                 android:text="@{bean.author}"
+                tools:text="xiaoyang"
                 />
 
         <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/chapter_title"
+                style="@android:style/Widget.Material.Light.TextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@{bean.title}"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.016"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                style="@android:style/Widget.Material.Light.TextView"
-                android:text="@{bean.title}"
-                android:id="@+id/chapter_title"
-                android:layout_marginLeft="20dp"
-                android:textColor="@android:color/darker_gray"
-                tools:text="Android 网络编程"
-                />
+                app:layout_constraintVertical_bias="0.504"
+                tools:text="Android 网络编程" />
 
         <TextView
                 android:layout_width="wrap_content"

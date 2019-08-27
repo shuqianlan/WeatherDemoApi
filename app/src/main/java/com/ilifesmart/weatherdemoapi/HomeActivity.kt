@@ -1,8 +1,7 @@
 package com.ilifesmart.weatherdemoapi
 
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.ilifesmart.weatherdemoapi.adapters.KotlinDataAdapter
 import com.ilifesmart.weatherdemoapi.base.BaseViewModelActivity
 import com.ilifesmart.weatherdemoapi.databeans.HomeChapters
@@ -34,26 +33,41 @@ class HomeActivity : BaseViewModelActivity<HomeViewModel>() {
             isSupportRefreshStatus(true)
         }.build()
 
-        home_articles.addOnScrollListener(object :RecyclerView.OnScrollListener() {
-            private var isScrolled = false // 限制滑动时加载.
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (isScrolled) {
-                    (recyclerView.layoutManager as? LinearLayoutManager) ?.let {
-                        var lastItem = it.findLastCompletelyVisibleItemPosition()
-                        var itemCount = it.itemCount
+/*
+若不内嵌在nestedScrollView中，此处有效
+//        home_articles.addOnScrollListener(object :RecyclerView.OnScrollListener() {
+//            private var isScrolled = false // 限制滑动时加载.
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                if (isScrolled) {
+//                    (recyclerView.layoutManager as? LinearLayoutManager) ?.let {
+//                        var lastItem = it.findLastCompletelyVisibleItemPosition()
+//                        var itemCount = it.itemCount
+//
+//                        println("lastItem: $lastItem itemCount:$itemCount")
+//                        if (itemCount-1 == lastItem) {
+//                            loadDatas()
+//                        }
+//                    }
+//                }
+//            }
+//
+//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                isScrolled = (newState in listOf<Int>(RecyclerView.SCROLL_STATE_DRAGGING, RecyclerView.SCROLL_STATE_SETTLING))
+//            }
+//        })
+ */
 
-                        println("lastItem: $lastItem itemCount:$itemCount")
-                        if (itemCount-1 == lastItem) {
-                            loadDatas()
-                        }
-                    }
-                }
-            }
+        nestedScrollview.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            val isChanceToLoadDatas = (scrollY == (nestedScrollview.getChildAt(0).measuredHeight - nestedScrollview.measuredHeight))
 
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                isScrolled = (newState in listOf<Int>(RecyclerView.SCROLL_STATE_DRAGGING, RecyclerView.SCROLL_STATE_SETTLING))
+//            println("chidAt(0).height ${nestedScrollview.getChildAt(0).measuredHeight}")
+//            println("nestedScrollview.height ${nestedScrollview.measuredHeight}")
+//            println("scrollY $scrollY isChanceToLoadDatas: $isChanceToLoadDatas")
+            if (isChanceToLoadDatas) {
+//                println("============================>>>>")
+                loadDatas()
             }
-        })
+        }
 
         toolbar.title = ""
         setSupportActionBar(toolbar)

@@ -7,14 +7,22 @@
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".HomeActivity"
+        android:id="@+id/nestedScrollview"
         tools:showIn="@layout/activity_home">
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/home_articles"
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
-            />
+            >
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_articles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                android:background="#f4f4f4"
+                />
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

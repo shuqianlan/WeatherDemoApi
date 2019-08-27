@@ -19,8 +19,8 @@ class KotlinDataAdapter<T,R:ViewDataBinding> private constructor(): RecyclerView
     private var itemClick: ((View, T) -> Unit)?=null
     private var isSupportRefreshStatus = false
 
-    private val NORMAL = 0
-    private var REFRESH = 1
+    private val NORMAL = 0  // 正常态
+    private var REFRESH = 1 // 上拉刷新态
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataHolder {
         val binder = if (viewType == REFRESH) {
